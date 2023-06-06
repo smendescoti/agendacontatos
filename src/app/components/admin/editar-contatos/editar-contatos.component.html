@@ -1,0 +1,74 @@
+<div class="m-4">
+    <div class="card">
+        <div class="card-body">
+
+            <h5>Edição de Contatos</h5>
+            <p>Utilize o formulário para alterar os dados do contato</p>
+            <hr />
+
+            <div *ngIf="mensagem" class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{mensagem}}</strong>
+                <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+            </div>
+
+            <form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+
+                <!-- campo oculto -->
+                <input type="hidden" formControlName="idContato"/>
+
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nome do contato:</label>
+                        <input type="text" class="form-control" formControlName="nome" placeholder="Ex: João da Silva">
+                        <span class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                            <small *ngIf="form.nome.errors.required">
+                                Por favor, informe o nome do contato.
+                            </small>
+                            <small *ngIf="form.nome.errors.minlength">
+                                Por favor, informe no mínimo 8 caracteres.
+                            </small>
+                            <small *ngIf="form.nome.errors.maxlength">
+                                Por favor, informe no máximo 150 caracteres.
+                            </small>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Email do contato:</label>
+                        <input type="email" class="form-control" formControlName="email"
+                            placeholder="Ex: joaodasilva@gmail.com">
+                        <span class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+                            <small *ngIf="form.email.errors.required">
+                                Por favor, informe o email do contato.
+                            </small>
+                            <small *ngIf="form.email.errors.email">
+                                Por favor, informe um endereço de email válido.
+                            </small>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Telefone do contato:</label>
+                        <input type="text" class="form-control" formControlName="telefone"
+                            placeholder="Ex: (21)99999-0000" mask="(00)00000-0000">
+                        <span class="text-danger" *ngIf="form.telefone.touched && form.telefone.invalid">
+                            <small *ngIf="form.telefone.errors.required">
+                                Por favor, informe o telefone do contato.
+                            </small>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <button type="submit" [disabled]="!formEdicao.valid" class="btn btn-primary btn-sm">
+                            Salvar Alterações
+                        </button>
+                        <button class="btn btn-sm btn-light ms-2"
+                            [routerLink]="['/consultar-contatos']">
+                            Voltar para a consulta
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

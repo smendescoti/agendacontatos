@@ -1,0 +1,28 @@
+<div class="m-4">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h5>Dashoard Principal</h5>
+                    <p>Seja bem vindo à agenda de contatos!</p>
+                </div>
+                <div class="col-md-3">
+                    <label>Tipo do gráfico:</label>
+                    <select class="form-select" [(ngModel)]="tipo" (change)="ngOnInit()">
+                        <option value="bar">Gráfico de Barras</option>
+                        <option value="column">Gráfico de Colunas</option>
+                        <option value="line">Gráfico de Linhas</option>
+                        <option value="pie">Gráfico de Pizza</option>
+                        <option value="area">Gráfico de Área</option>
+                    </select>
+                </div>
+            </div>
+
+            <hr />
+
+            <div [chart]="grafico"></div>
+
+        </div>
+    </div>
+</div>
